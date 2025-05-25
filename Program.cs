@@ -10,6 +10,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
 
 builder.Services.AddScoped<IDbService, DbService>();
+builder.Services.AddScoped<IPatientService, PatientService>();
 builder.Services.AddScoped<IPrescriptionService, PrescriptionService>();
 
 builder.Services.AddDbContext<DatabaseContext>(options => 
@@ -28,3 +29,5 @@ app.UseHttpsRedirection();
 
 app.MapControllers();
 app.Run();
+
+public partial class Program {}

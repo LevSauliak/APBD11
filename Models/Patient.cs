@@ -16,4 +16,6 @@ public class Patient
 
     public DateTime Birthdate { get; set; }
     
+    public ICollection<Prescription> Prescriptions { get; set; }
+    
 }

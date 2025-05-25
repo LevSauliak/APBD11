@@ -7,10 +7,15 @@ namespace WebApplication1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PrescriptionsController(IPrescriptionService _prescriptionService) : ControllerBase
+    public class PrescriptionsController: ControllerBase
     {
 
         private readonly IPrescriptionService _prescriptionService;
+
+        public PrescriptionsController(IPrescriptionService prescriptionService)
+        {
+            _prescriptionService = prescriptionService;
+        }
         
         
         [HttpPost]

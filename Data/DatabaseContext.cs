@@ -43,12 +43,14 @@ public class DatabaseContext : DbContext
         {
             new Prescription(){IdPrescription = 1, IdPatient = 1, IdDoctor = 1, Date = DateTime.Today, DueDate = DateTime.Today.Add(TimeSpan.FromDays(3))},
             new Prescription(){IdPrescription = 2, IdPatient = 2, IdDoctor = 2, Date = DateTime.Today, DueDate = DateTime.Today.Add(TimeSpan.FromDays(4))},
+            new Prescription(){IdPrescription = 3, IdPatient = 1, IdDoctor = 1, Date = DateTime.Today, DueDate = DateTime.Today.Add(TimeSpan.FromDays(5))},
         });
 
         modelBuilder.Entity<PrescriptionMedicament>().HasData(new List<PrescriptionMedicament>()
         {
             new PrescriptionMedicament(){IdMedicament = 1, IdPrescription = 1, Details = "Has phantom pain", Dose = 400},
             new PrescriptionMedicament(){IdMedicament = 2, IdPrescription = 2, Details = "Wants to sleep"},
+            new PrescriptionMedicament(){IdMedicament = 1, IdPrescription = 3, Details = "Has leg pain", Dose = 400},
         });
     }
 }

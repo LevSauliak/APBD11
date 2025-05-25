@@ -1,3 +1,5 @@
+using Microsoft.CodeAnalysis;
+using Microsoft.EntityFrameworkCore;
 using WebApplication1.Data;
 using WebApplication1.DTOs;
 using WebApplication1.Models;
@@ -18,9 +20,16 @@ public class DbService: IDbService
         return await _context.Patients.FindAsync(patientId) != null;
     }
 
-    public async Task<bool> AddPatient(Patient patient)
+    public async Task<bool> AddPatient(PrescriptionPatientDTO patient)
     {
-        await _context.Patients.AddAsync(patient);
+        await _context.Patients.AddAsync(new Patient()
+        {
+            IdPatient = patient.IdPatient,
+            FirstName = patient.FirstName,
+            LastName = patient.LastName,
+            Birthdate = patient.BirthDate,
+        });
+        await _context.SaveChangesAsync();
         return true;
     }
 
@@ -64,5 +73,13 @@ public class DbService: IDbService
             throw;
         }
 
+    }
+
+    public async Task<Patient?> GetPatientWithPrescriptions(int id)
+    {
+        return await _context.Patients.Include(p => p.Prescriptions)
+            .ThenInclude(pre => pre.PrescriptionMedicaments)
+            .ThenInclude(pm => pm.Medicament)
+            .FirstOrDefaultAsync(p => p.IdPatient == id);
     }
 }

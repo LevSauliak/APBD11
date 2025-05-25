@@ -26,7 +26,7 @@ public class PrescriptionService : IPrescriptionService
         {
             await _dbService.AddPatient(prescriptionDto.Patient);
         }
-
+        
         return await _dbService.AddPrescription(prescriptionDto);
     }
 }

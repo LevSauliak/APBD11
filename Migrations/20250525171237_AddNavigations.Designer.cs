@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplication1.Data;
 
@@ -11,9 +12,11 @@ using WebApplication1.Data;
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20250525171237_AddNavigations")]
+    partial class AddNavigations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -195,14 +198,6 @@ namespace WebApplication1.Migrations
                             DueDate = new DateTime(2025, 5, 29, 0, 0, 0, 0, DateTimeKind.Local),
                             IdDoctor = 2,
                             IdPatient = 2
-                        },
-                        new
-                        {
-                            IdPrescription = 3,
-                            Date = new DateTime(2025, 5, 25, 0, 0, 0, 0, DateTimeKind.Local),
-                            DueDate = new DateTime(2025, 5, 30, 0, 0, 0, 0, DateTimeKind.Local),
-                            IdDoctor = 1,
-                            IdPatient = 1
                         });
                 });
 
@@ -240,13 +235,6 @@ namespace WebApplication1.Migrations
                             IdMedicament = 2,
                             IdPrescription = 2,
                             Details = "Wants to sleep"
-                        },
-                        new
-                        {
-                            IdMedicament = 1,
-                            IdPrescription = 3,
-                            Details = "Has leg pain",
-                            Dose = 400
                         });
                 });
 
